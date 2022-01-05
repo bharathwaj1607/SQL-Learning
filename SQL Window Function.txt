@@ -1,0 +1,66 @@
+WINDOW functions in SQL
+
+A window function or analytic function is a function which uses values from one or multiple rows to return a value for each row. Window functions perform calculations on a set of rows that are related together. But, unlike the aggregate functions, windowing functions do not collapse the result of the rows into a single value.
+
+BASIC SYNTAX:
+
+window_function_name (expression) OVER (
+partition_clause
+order_clause
+frame_clause
+)
+
+
+Three types of window functions:
+
+1. Value - FIRST_VALUE(), LEAD(), LAG(), LAST_VALUE()
+2. Aggregate - AVG(), COUNT(), MIN(), MAX(), SUM()
+3. Ranking - CUME_DIST(), DENSE_RANK(), NTILE(), PERCENT_RANK(), RANK(), ROW_NUMBER()
+
+* FIRST_VALUE() 
+Returns the first value in an ordered set of values/over partition.
+Ex 1: Who got the lowest salary
+Ex 2: In each department, who got the lowest salary
+
+* LAG()
+Access data of the previous row from the current row. Comes to great use when difference between the current and the previous row needs to be calculated
+Ex: Return employee's current year's salary as well as previous year's salary
+
+* LAST_VALUE()
+Returns the last value in an ordered set of values/over partition.
+Ex 1: Who got the highest salary
+Ex 2: In each department, who got the highest salary
+
+* LEAD()
+Provides access to a row at a specified physical offset which follows the current row.
+Ex 1: For each employee hired, return the hire date of the employee hired just after
+Ex 2: For each employee hired, return the hire date of the employee from the same department hired just after
+
+* CUME_DIST()
+Calculate cumulative distribution values of rows.
+Ex 1: Find the cumulative distribution values by headcount of each department
+
+* DENSE_RANK()
+Rank rows in partitions with no gaps in ranking values. Different from the RANK() function, the DENSE_RANK() function always generates consecutive rank values.
+Ex 1: Rank employees by the salary
+Ex 2: Find employees with the highest salary across each departments (Use sub query in the from clause)
+
+* NTILE()
+Break a result set into a specified number of buckets/specified number of approximately equal groups, or buckets.
+Ex 1: Divide the employees into n buckets based on the salary
+
+*PERCENT_RANK()
+Function to calculate the percentile rankings of rows in a result set.
+Ex 1: Find the percentile ranks of employees by their salaries
+
+* RANK()
+Function to find the rank of each row in the result set. Does not use consecutive rank pattern.
+Ex 1: Rank employees by the salary
+
+* ROW_NUMBER()
+Assign a sequential number to each row in a query result set.
+Ex 1: Add a sequential integer number to each row
+Ex 2: Find the employees whose have the highest salary in their departments
+
+
+
